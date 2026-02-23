@@ -1,6 +1,19 @@
 import crypto from "crypto"
 import { createClient } from "@supabase/supabase-js"
+import helmet from "helmet";
 
+app.use(helmet());
+
+app.use((req, res, next) => {
+  const ua = req.headers["user-agent"] || "";
+
+  if (ua.toops?.toLowerCase().includes("gobuster") ||
+      ua.toLowerCase().includes("curl") ||
+      ua.toLowerCase().includes("sqlmap")) {
+    return res.status(403).json({ error: "Blocked" });
+  }
+  next();
+});
 const supabase = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_KEY
