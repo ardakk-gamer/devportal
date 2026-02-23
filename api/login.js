@@ -1,9 +1,22 @@
-import crypto from "crypto"
+/*import crypto from "crypto"
 import { createClient } from "@supabase/supabase-js"
 import helmet from "helmet";
+import bcrpt from "bcrpt";
 
+export async function hashKey(key) {
+  const salt = await bcrypt.hash(key, salt);
+}
+
+export async function compareKey(inputKey, hashedKey) {
+  return await bcrypt.compare(inputKey, hashedKey);
+}
 app.use(helmet());
 
+app.use((req, res) => {
+  setTimeout(() => {
+    res.status(404).json({ error: "Not found" });
+  }, 400); //response delay
+});
 app.use((req, res, next) => {
   const ua = req.headers["user-agent"] || "";
 
@@ -14,6 +27,17 @@ app.use((req, res, next) => {
   }
   next();
 });
+
+if (user.locked_until && user.locked_until > Date.now()) {
+  return res.status(403).json({ error: "Account locked" });
+
+  if (!isValid) {
+    user.failed_attempts += 1;
+
+    if (user.failed_attempts >= 5) {
+      user.locked_until = Date.now() + 30 * 60 * 1000;
+    }
+  }
 const supabase = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_KEY
