@@ -1,14 +1,27 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-  <meta charset="UTF-8" />
-  <title>Dashboard</title>
-  <link rel="stylesheet" href="css/style.css" />
-</head>
-<body>
+<!-- login.html içeriği -->
+<div class="card">
+    <h2>Echospark Login</h2>
+    <input type="text" id="username" placeholder="Kullanıcı Adı">
+    <input type="password" id="devKey" placeholder="Şifre">
+    <button onclick="girisYap()">Sisteme Giriş</button>
+</div>
 
-  <h1>Hoş geldin!</h1>
-  <p>Burası geliştirici paneli.</p>
-
-</body>
-</html>
+<script>
+async function girisYap() {
+    const u = document.getElementById('username').value;
+    const p = document.getElementById('devKey').value;
+    
+    // Python sunucuna (dev_panel.py veya yeni backend'ine) istek at
+    const response = await fetch('/kontrol-noktasi', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ kullanici_adi: u, dev_key: p })
+    });
+    
+    if (response.ok) {
+        window.location.href = '/dashboard.html'; // Giriş başarılıysa dashboard'a at
+    } else {
+        alert("Yetkisiz Giriş!");
+    }
+}
+</script>
