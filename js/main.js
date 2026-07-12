@@ -8,6 +8,9 @@ async function girisYap() {
     const response = await fetch('/api/login', {
         method: 'POST',
         body: JSON.stringify({ user: u, pass: p })
+    headers: {
+        'Content-Type': 'application/json'
+    },
     });
 
     const data = await response.json();
