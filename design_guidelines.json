@@ -1,0 +1,100 @@
+{
+  "theme_strategy": {
+    "mode": "dark-first",
+    "rationale": "Developer-focused admin portal needs a high-contrast, technical dark mode to reduce glare during long sessions. Utilizing Archetype 4 (Swiss & High-Contrast) adapted for a modern, code-editor aesthetic."
+  },
+  "typography": {
+    "headings": {
+      "font": "JetBrains Mono",
+      "import_url": "@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=swap');",
+      "rules": "Used for all headings, key numerical data, and technical labels. Must use tracking-tight for larger sizes. Avoid bold by default—use black or regular weights to create distinct contrast."
+    },
+    "body": {
+      "font": "IBM Plex Sans",
+      "import_url": "@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600&display=swap');",
+      "rules": "Used for body copy, paragraphs, list items, and standard reading text. Maintains clinical legibility for dense admin data."
+    }
+  },
+  "colors": {
+    "base": {
+      "background": "#09090B",
+      "surface": "#18181B",
+      "foreground": "#FAFAFA",
+      "border": "rgba(255, 255, 255, 0.1)"
+    },
+    "accents": {
+      "primary": "#EAB308",
+      "secondary": "#06B6D4",
+      "destructive": "#EF4444",
+      "success": "#10B981"
+    },
+    "rules": "Never use pure #000 or #FFF. Text contrast must exceed WCAG AA minimums. Accent colors should be used minimally, leaning on Cyber Yellow (#EAB308) for primary actions (e.g., Nova Chatbot CTA) to draw developer attention. NO purple/violet gradients. NO full-screen gradients."
+  },
+  "layouts": {
+    "strategy": "Grid Borders & High Density (MODE B)",
+    "rules": [
+      "Use sharp 1px borders (border-white/10) for grids and cards to expose the skeleton.",
+      "Cards should have 0px to 4px border radius. Achieve an extremely sharp, technical look.",
+      "Never use center-alignment for layouts unless it is an explicit hero section. Left-align for better scannability.",
+      "Containers must use generous internal padding (p-6, p-8).",
+      "Grid items must be direct children of grid containers.",
+      "Header MUST have a solid background or heavy glass (bg-black/90). DO NOT use complete transparent backgrounds for headers/overlays."
+    ]
+  },
+  "visual_enhancers": {
+    "surfaces": "Grid Borders (The Technical Look) - 1px solid borders with subtle grid lines.",
+    "hover_states": "Crisp highlight with explicit text color changes. Never rely on inheritance. E.g., hover:bg-zinc-800 hover:text-white",
+    "glassmorphism": "Avoid in data-heavy screens to preserve optical clarity. If necessary for sticky elements, use high opacity (bg-black/90) with heavy backdrop-blur-xl and a crisp 1px border. DO NOT use transparent dropdown backgrounds."
+  },
+  "components": {
+    "buttons": "Sharp corners (rounded-sm or rounded-none). High contrast hover states. Use 'Cyber Yellow' strictly for the Nova integration CTA.",
+    "inputs": "Flat design with 1px borders. Focus rings must be explicit and high contrast (focus:ring-2 focus:ring-primary focus:outline-none).",
+    "tables": "Dense layout, strict 1px border lines. Left-aligned data. No soft shadows.",
+    "chat_ui": "Awwwards-minimalist. Remove traditional rounded 'bubble' tails. Use structured rectangular blocks with clear sender/timestamp metadata.",
+    "navigation": "Sidebar navigation for admin tools. Must have solid background (bg-zinc-950) with 1px right border.",
+    "toasts": "Use Sonner component (sonner.tsx). Position at bottom-right, sharp edges, dark theme."
+  },
+  "icons_and_assets": {
+    "library": "lucide-react",
+    "rules": "Use thin stroke widths (1.5px) for a technical feel. Avoid generic emojis (🤖🧠💭💡🔮🎯)."
+  },
+  "motion": {
+    "rules": [
+      "Minimalist and functional.",
+      "Use staggered entrance animations for table rows and chat messages.",
+      "Avoid 'transition: all'. Explicitly define transition properties (e.g., transition-colors, transition-transform).",
+      "Micro-interactions on hover (slight translate-y, border color shift)."
+    ]
+  },
+  "accessibility": {
+    "rules": [
+      "Minimum 4.5:1 contrast ratio for normal text.",
+      "Explicit focus states on all interactive elements.",
+      "All interactive and key informational elements MUST include a data-testid attribute in kebab-case (e.g., data-testid='login-submit-button')."
+    ]
+  },
+  "GENERAL_UI_UX_DESIGN_GUIDELINES": [
+    "Do not converge toward generic outputs. Avoid the 'AI slop' aesthetic.",
+    "Dark colors look good when used independently without gradients. DO NOT use dark colors as gradients.",
+    "Create depth through layered design elements with z-index hierarchy and crisp 1px borders, avoiding soft blurred drop shadows.",
+    "Do not apply universal transitions (e.g., transition: all). Add transitions for specific interactive elements excluding transforms.",
+    "Do not center align the app container. Do not add `.App { text-align: center; }` in the CSS file. This disrupts human natural reading flow.",
+    "Every interaction needs micro-animations - hover states, transitions, entrance animations. Static = dead.",
+    "Use 2-3x more spacing than feels comfortable. Cramped designs look cheap.",
+    "Subtle grain textures, custom cursors, selection states, and loading animations separate good from extraordinary."
+  ],
+  "instructions_to_main_agent": [
+    "CRITICAL: Share the guideline and code implementations for .js files (JSX), NOT .tsx files.",
+    "1. Setup fonts by importing JetBrains Mono and IBM Plex Sans into index.css. Apply to Tailwind config.",
+    "2. Update tailwind.config.js to enforce the strict dark theme colors and sharp border radii.",
+    "3. Build Login Screen: Minimalist terminal-style centered card. Credentials (admin / ilovecookies4) should grant access.",
+    "4. Build Admin Dashboard with Sidebar. Include prominent 'Nova Chatbot' button (in Cyber Yellow) navigating to the /nova route.",
+    "5. Build Users Management page: Data-dense Shadcn-style table with full CRUD functionality, role toggles, and sharp 1px borders.",
+    "6. Build Real-time Chat page: Sidebar user list, right-pane message view. Sharp chat bubbles, no generic tails.",
+    "7. Build /nova Placeholder Page: A technical, welcoming 'drop your AI code here' screen.",
+    "8. Build Profile/Settings page to allow password changes.",
+    "9. Ensure sticky headers/navs use solid or heavy blurred backgrounds. NO transparent headers.",
+    "10. Add data-testid to every button, link, and input."
+  ]
+}
+
